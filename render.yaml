@@ -1,11 +1,10 @@
 services:
   - type: web
-    name: stocksense-ims
+    name: inventory-backend
     env: python
+    plan: free
     buildCommand: pip install -r requirements.txt
-    startCommand: python run.py
+    startCommand: cd backend && gunicorn app:app --bind 0.0.0.0:$PORT
     envVars:
-      - key: FLASK_ENV
-        value: production
       - key: PYTHON_VERSION
-        value: 3.11.0
+        value: 3.10.13
